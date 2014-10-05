@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   post 'signup' => "static_pages#signup_user", as: 'signup_user'
   post 'login' => "static_pages#login_user", as: 'login_user'
   get 'profile', to: "static_pages#profile", as: 'profile'
+  get 'welcome', to: "static_pages#welcome", as: 'welcome'
+  get 'signout', to: "static_pages#signout", as: 'signout'
+  get 'tweet/:id', to: "tweet#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
