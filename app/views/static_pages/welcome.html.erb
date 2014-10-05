@@ -1,0 +1,12 @@
+
+<div class="login_box">
+  <h3 style="text-align:center;"> Welcome Catter</h3>
+<%= form_tag('/login', method: :post)  do%>
+  <input name="email" type="text" class="form-control input-lg" placeholder="email">
+  <input name="password" type="password" class="form-control input-lg password_box" placeholder="password">
+<div class="btn-group login_box_btn_group">
+  <input type="submit" value="Login" class="btn btn-primary login_box_btn">
+  <%= link_to('Sign Up', signup_path, :class => 'btn btn-success login_box_btn')  %>
+</div>
+<% end %>
+</div>

@@ -1,0 +1,10 @@
+
+<div class="login_box">
+  <h3 style="text-align:center;"> Catter Signup</h3>
+<%= form_tag('/signup', method: :post) do%>
+  <input name="email" type="text" class="form-control input-lg" placeholder="email">
+  <input name="password" type="password" class="form-control input-lg password_box" placeholder="password">
+  <input name="password_confirmation" type="password" class="form-control input-lg password_box" placeholder="password confirmation">
+  <input type="submit" value="Sign up" class="btn btn-success sign_up_btn">
+<% end %>
+</div>
