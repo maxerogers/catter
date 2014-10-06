@@ -4,7 +4,7 @@
     <%= image_tag('cat-05.jpg',class: 'tweet_avatar') %>
     </div>
     <div class='col-xs-10'>
-    <p> <a href='#' class='author_tag'>@<%= tweet.user.name%></a>  <span class='time_stamp'><%= tweet.updated_at%></span> </p>
+    <p> <%= link_to "@#{tweet.user.name}", user_path(tweet.user), class: 'author_tag', method: :get %>  <span class='time_stamp'><%= tweet.updated_at%></span> </p>
     <p> <%= tweet.message %> </p>
     <div class='buttons'>
       <button class='reply btn btn-link'><span class='glyphicon glyphicon-send'></span> Reply </button>

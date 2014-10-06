@@ -1,0 +1,45 @@
+After helping my friend Eve with her own rails project I noticed my knowledge was incomplete and rusty.
+
+So to help reinforce my skills I sought out making a twitter clone with a cat theme.
+
+I'm surprised by how much I've learned doing this project this weekend
+
+1. Setting up a following relationship proved to be quite a challenge.Eventually I came up with my current solution
+
+Using a middleman class called following it holds a belongs_to reference to both users.
+Then using the through: and class_name: tags I can properly map the relationship. Note, User still needs to make a
+direct link to these relationship maps otherwise it can't properly search through them.
+
+create_table :following do |t|
+  t.belongs_to :user
+  t.belongs_to :follower
+end
+
+class Following < ActiveRecord::Base
+  belongs_to :user, class_name: "User"
+  belongs_to :follower, class_name: "User"
+end
+
+class Following < ActiveRecord::Base
+  has_many :followings #this is needed otherwise they won't properly map
+  has_many :followers, class_name: 'Following', foreign_key: 'user_id'
+  has_many :following, class_name: 'Following', foreign_key: 'follower_id'
+end
+
+Note that I use class_name: and foreign_key: instead of the suggested through: and source:. I tried to use them
+originally but I am unsure why it didn't work. However I know that my new solution does.
+
+2. Rails and JS communication. Now to communication from client JS to Rails controller is done with AJAX requests.
+ Simply you treat the rails controllers as Restful APIs then in the controller decide if you want to reply with a
+ json, forward a new rendering or simply render nothing. I had difficultly passing rails variables to js at first.
+
+ Originally I thought js.erb was the answer but that quickly provide to not work. On the web its suggested to use
+ hidden data-variables hidden in the html but thats a terrible solution. Instead I discovered this neat little gem called
+ gon. It made the whole process incrediblely easy. You just treat gon like JSON thats passed from the controller to the JS before
+ its ran.
+
+ 3. TurboLinks will stop your javascript from reloading. To avoid the web suggested that I'd use $(document).on('page:load',function(){});
+ instead of the classic jquery document.ready however that didn't work for me. Instead I used an explicit method: call in my link_to method.
+ That resolved the issue for me. Next I will try out the jquery.turbolinks gem and see if that doesn't provide a simplier solution.
+
+4.    
