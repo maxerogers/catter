@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @current_user = User.find(session[:user_id])
+    @current_user = User.find(session[:user_id]) if session[:user_id]
     gon.user_id = @user.id
   end
 
