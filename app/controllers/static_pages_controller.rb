@@ -1,15 +1,6 @@
 class StaticPagesController < ApplicationController
-  def login
-    puts "login"
-  end
-
-  def signup
-  end
-
   def signup_user
-    puts params.inspect
     @user = User.create email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation]
-    puts @user
     if @user
       session[:user_id] = @user.id
       redirect_to :profile
@@ -21,14 +12,22 @@ class StaticPagesController < ApplicationController
   end
 
   def login_user
-    puts params.inspect
     @user = User.find_by(email: params[:email]).try(:authenticate, params[:password])
     if @user
       session[:user_id] = @user.id
       redirect_to :profile
     else
-      redirect_to :welcome
+      redirect_to :welcome, :flash => { :feedback_error => "has-error" }
     end
+  end
+
+  def signout
+    session[:user_id] = nil
+    @current_user = nil
+    redirect_to :welcome
+  end
+
+  def signup
   end
 
   def profile

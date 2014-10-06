@@ -3,6 +3,7 @@
 <head>
   <title>MyRailsTemplate</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= include_gon %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -18,7 +19,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Catter</a>
+      <%= image_tag("catter_icon.png", class: "catter_icon navbar-brand") %>
+      <a class="navbar-brand" href="/profile">Catter</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -30,6 +32,14 @@
         <li><%= link_to "Sign Out", signout_path %> </li>
         <% end %>
       </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

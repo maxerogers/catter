@@ -30,7 +30,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
 gem 'carrierwave' #holding pictures
-
+gem 'gon' #communicate between JS and Rails
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
 
