@@ -22,4 +22,19 @@ $('.reply_box').hide();
       console.log(data["message"]);
     });
   });
+
+  $("#profile_edit_btn").click(function(){
+    $(this).parent().hide();
+    $(".edit_form").show();
+  });
+  $(".edit_form").hide();
+
+  $(".meow_btn").click(function(){
+    var json = {};
+    json.user_id = gon.user_id;
+    json.message = $(this).parent().children("textarea").val()
+    $.post("tweet/new",json,function(data){
+      console.log(data);
+    });
+  });
 });

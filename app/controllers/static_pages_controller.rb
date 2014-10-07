@@ -31,13 +31,15 @@ class StaticPagesController < ApplicationController
   end
 
   def profile
+    gon.user_id = session[:user_id]
     redirect_to :welcome unless current_user
   end
 
-  def file_upload_test
+  def profile_edit
     @current_user = User.find(session[:user_id])
     @current_user.avatar = params[:file]
     @current_user.save!
+    redirect_to :profile
   end
 
   def welcome
