@@ -10,21 +10,16 @@ $( document ).ready(function() {
 $('.reply_box').hide();
 
   $(".reply").click(function(){
-
-    var x = $(this).parent().parent().children(".reply_box");
-    console.log(x);
-    if(x === []){
-      $(this).parent().parent().children(".reply_box").hide();
-    }else{
-      $(this).parent().parent().children(".reply_box").show();
-    }
+    $(this).parent().parent().children(".reply_box").toggle();
   });
 
   $(".retweet").click(function(){
-    console.log(get_tweet_id(this));
-    var url = 'retweet/' + Username + '/';
-    var form = $('<form action="' + url + '" method="post">' +
-      '<input type="text" name="api_url" value="' + Return_URL + '" />' +
-      '</form>');
+    var json = {};
+    json.user_id = gon.user_id;
+    json.current_user_id = gon.current_user_id;
+    var id = $(this).parent().children("#tweet_id").val();
+    $.post("/tweet/"+id+"/retweet",json,function(data){
+      console.log(data["message"]);
+    });
   });
 });

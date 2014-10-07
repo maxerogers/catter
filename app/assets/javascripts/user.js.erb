@@ -7,26 +7,6 @@ function get_tweet_id(source){
 }
 
 $( document ).ready(function() {
-  console.log("RWAR");
-$('.reply_box').hide();
-
-  $(".reply").click(function(){
-    //console.log(get_tweet_id(this));
-    var x = $(this).parent().parent().children(".reply_box");
-    if(x === []){
-      $(this).parent().parent().children(".reply_box").show();
-    }else{
-      $(this).parent().parent().children(".reply_box").hide();
-    }
-  });
-
-  $(".retweet").click(function(){
-    console.log(get_tweet_id(this));
-    var url = 'retweet/' + Username + '/';
-    var form = $('<form action="' + url + '" method="post">' +
-      '<input type="text" name="api_url" value="' + Return_URL + '" />' +
-      '</form>');
-  });
   $("#follow_btn").click(function(){
     var id = gon.user_id;
     console.log("follow"+id);

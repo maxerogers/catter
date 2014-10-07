@@ -29,7 +29,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
-gem 'carrierwave' #holding pictures
+gem 'carrierwave' #handling pic uploads
 gem 'gon' #communicate between JS and Rails
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
@@ -44,3 +44,4 @@ gem 'gon' #communicate between JS and Rails
 # gem 'debugger', group: [:development, :test]
 
 gem 'quiet_assets', group: :development
+gem 'jquery-turbolinks' #added to fix broken js caused by turbolinks

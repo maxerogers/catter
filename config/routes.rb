@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   get 'welcome', to: "static_pages#welcome", as: 'welcome'
   get 'signout', to: "static_pages#signout", as: 'signout'
   get 'tweet/:id', to: "tweet#show"
+  post 'tweet/:id/retweet', to: "tweet#retweet"
   get 'user/:id', to: "user#show", as: 'user'
   post 'user/:id/follow', to: "user#follow"
   post 'user/:id/unfollow', to: "user#unfollow"
+
+  get '/file_upload_test', to: "static_pages#file_upload_test"
+  post '/file_upload_test', to: "static_pages#file_upload_test"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

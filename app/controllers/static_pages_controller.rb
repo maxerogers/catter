@@ -34,6 +34,12 @@ class StaticPagesController < ApplicationController
     redirect_to :welcome unless current_user
   end
 
+  def file_upload_test
+    @current_user = User.find(session[:user_id])
+    @current_user.avatar = params[:file]
+    @current_user.save!
+  end
+
   def welcome
   end
 end

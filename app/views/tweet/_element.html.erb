@@ -4,10 +4,11 @@
     <%= image_tag('cat-05.jpg',class: 'tweet_avatar') %>
     </div>
     <div class='col-xs-10'>
-    <p> <%= link_to "@#{tweet.user.name}", user_path(tweet.user), class: 'author_tag', method: :get %>  <span class='time_stamp'><%= tweet.updated_at%></span> </p>
+    <p> <%= link_to "@#{tweet.user.name}", user_path(tweet.user), class: 'author_tag' %>  <span class='time_stamp'><%= tweet.updated_at%></span> </p>
     <p> <%= tweet.message %> </p>
     <div class='buttons'>
       <button class='reply btn btn-link'><span class='glyphicon glyphicon-send'></span> Reply </button>
+      <input type="hidden" id="tweet_id" value="<%= tweet.id %>" />
       <button class='retweet btn btn-link'><span class='glyphicon glyphicon-share-alt'></span> Retweet </button>
     </div>
     <br><br>
