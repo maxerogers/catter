@@ -1,6 +1,5 @@
-
-<div class="profile_box">
-
+<div class="col-md-1"></div>
+<div class="col-md-5 profile_box_1">
   <h1 id="profile_header"> <%= image_tag(@current_user.avatar.url ,class: "tweet_avatar") %> @<span id="user_name_header"><%= @current_user.name%></span> <button id="profile_edit_btn" class="edit_btn btn btn-info"> Edit </button> </h1>
   <%= form_tag("/profile/edit", method: :put, multipart: :true, class: "edit_form") do  %>
     <h1> <%= image_tag(@current_user.avatar.url ,class: "tweet_avatar") %><%= text_field_tag "name", @current_user.name%> </h1>
@@ -9,15 +8,41 @@
   <% end %>
 
   <div class="input-group">
-      <textarea class="form-control custom-control" rows="3" style="resize:none" placeholder="Meow"></textarea>
+      <textarea class="form-control custom-control" id="meow_textarea" rows="3" style="resize:none" placeholder="Meow"></textarea>
       <span class="input-group-addon btn btn-primary meow_btn">Meow</span>
   </div>
   <hr>
   <div>
-    <h3> Tweet Feed <button style="float:right;" class="btn btn-warning"> Collapse </button></h3>
+    <ul>
+      <% @current_user.following.each do |f| %>
+        <li> <%= f.user.name %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <h3> Tweet Feed </h3>
     <br>
+    <ul>
       <% Tweet.where(user: @current_user).each do |t|%>
         <%= render partial: "tweet/element", locals: {tweet: t}%>
       <% end %>
+    </ul>
   </div>
 </div>
+<div class="col-md-1"></div>
+<div class="col-md-4 profile_box_1">
+  <h1> Following </h1>
+  <ul>
+    <% @current_user.following.each do |f| %>
+      <li> <%= f.user.name %> </li>
+    <% end %>
+  </ul>
+  <h1> Following </h1>
+  <ul>
+    <% @current_user.following.each do |f| %>
+      <li> <%= link_to "@#{f.user.name}", user_path(f.user) %> : <%= Tweet.where(user: f.user).last.message %> </li>
+    <% end %>
+  </ul>
+</div>
+<div class="col-md-1"></div>

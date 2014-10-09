@@ -21,7 +21,7 @@ class Following < ActiveRecord::Base
 end
 
 class Following < ActiveRecord::Base
-  has_many :followings #this is needed otherwise they won't properly map
+  #has_many :followings #this is needed otherwise they won't properly map
   has_many :followers, class_name: 'Following', foreign_key: 'user_id'
   has_many :following, class_name: 'Following', foreign_key: 'follower_id'
 end
@@ -42,4 +42,21 @@ originally but I am unsure why it didn't work. However I know that my new soluti
  instead of the classic jquery document.ready however that didn't work for me. Instead I used an explicit method: call in my link_to method.
  That resolved the issue for me. Next I will try out the jquery.turbolinks gem and see if that doesn't provide a simplier solution.
 
-4.    
+4. Routes, Controllers and Actions oh my
+Rails routing system can be daughting at times. The issue is that rails supports many different versions of the same
+method but its difficult to determine why it isn't finding the route correctly
+
+You can get it a url, a generated path, a controller-action-id map and strange inbetween options.
+
+It gets more complicated when you try to use the button_to as it is really an embedded form submit.
+I've found the raw controller-action-id method works the best. Messing with routing just confuses the problem
+<%= link_to "Test", {controller: "tweet", action: "delete", id: "1"}, {method: :delete} %>
+<%= button_to "Test", {controller: "tweet", action: "delete", id: "1"}, {method: :delete} %>
+routes.rb -> delete 'tweet/:id', to: "tweet#delete"
+
+Note the action: "delete" is necessary. I don't know why...I would have assummed the method:delete would have been enough to identify the correct controller action guess not...
+Appears like rails really wants you to use its helper paths/urls. (Why it has both.. don't know guess its so people can use what version they want)
+
+5. Button_to != A button
+The button_to method doesn't generate a button. Its an imposter. It actually build a form with a input-submit.
+This creates issue when you try to do html css with the button like Bootstrap glyphs. The solution then is to just use a link_to method

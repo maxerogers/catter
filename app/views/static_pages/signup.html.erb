@@ -2,9 +2,18 @@
 <div class="login_box">
   <h3 style="text-align:center;"> Catter Signup</h3>
 <%= form_tag('/signup', method: :post) do%>
+  <% if flash[:feedback_error] == "has-error"%>
+    <% if flash[:error_type] == "email" %>
+      <p class="text-danger"> Your Email is already taken. Please Try again another one </p>
+    <% else %>
+      <p class="text-danger">I'm sorry but your Passwords don't match. Please Try again </p>
+    <% end %>
+  <% end %>
+  <div class="form-group <%= flash[:feedback_error] %>">
   <input name="email" type="text" class="form-control input-lg" placeholder="email">
   <input name="password" type="password" class="form-control input-lg password_box" placeholder="password">
   <input name="password_confirmation" type="password" class="form-control input-lg password_box" placeholder="password confirmation">
   <input type="submit" value="Sign up" class="btn btn-success sign_up_btn">
+  </div>
 <% end %>
 </div>

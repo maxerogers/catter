@@ -29,12 +29,23 @@ $('.reply_box').hide();
   });
   $(".edit_form").hide();
 
+  $("#meow_textarea").keyup(function (e) {
+    if (e.keyCode == 13) {
+      var json = {};
+      json.user_id = gon.user_id;
+      json.message = $(this).parent().children("textarea").val()
+      $.post("tweet/new",json,function(data){
+        location.reload();
+      });
+    }
+  });
+
   $(".meow_btn").click(function(){
     var json = {};
     json.user_id = gon.user_id;
     json.message = $(this).parent().children("textarea").val()
     $.post("tweet/new",json,function(data){
-      console.log(data);
+      location.reload();
     });
   });
 });

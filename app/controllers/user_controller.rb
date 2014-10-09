@@ -16,4 +16,6 @@ class UserController < ApplicationController
     render :nothing => true
   end
 
+  def edit
+  end
 end

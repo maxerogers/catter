@@ -5,13 +5,17 @@ Rails.application.routes.draw do
   get 'profile', to: "static_pages#profile", as: 'profile'
   get 'welcome', to: "static_pages#welcome", as: 'welcome'
   get 'signout', to: "static_pages#signout", as: 'signout'
-  get 'tweet/:id', to: "tweet#show"
+  get 'tweet/test', to: "tweet#test"
+  get 'tweet/:id', to: "tweet#show", as: 'show_tweet'
   post 'tweet/:id/retweet', to: "tweet#retweet"
   get 'user/:id', to: "user#show", as: 'user'
   post 'user/:id/follow', to: "user#follow"
   post 'user/:id/unfollow', to: "user#unfollow"
   put 'profile/edit', to: "static_pages#profile_edit"
   post 'tweet/new', to: "tweet#new"
+  delete 'tweet/test', to: "tweet#test"
+  delete 'tweet/:id', to: "tweet#delete"
+  get 'user/:id/edit', to: "user#edit", as: 'edit_user'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

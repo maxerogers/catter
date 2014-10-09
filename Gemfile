@@ -33,7 +33,7 @@ gem 'carrierwave' #handling pic uploads
 gem 'gon' #communicate between JS and Rails
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
-
+ gem 'thin'
 # Use unicorn as the app server
 # gem 'unicorn'
 
